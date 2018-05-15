@@ -2,9 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>hmtl5 test</title>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
 </head>
 <body>
-<h1>hello world</h1>
+<header>
+    This is the header
+</header>
+<nav>
+    <a href="#home1" title="home1">home1</a> |
+    <a href="#home2" title="home2">home2</a> |
+    <a href="#home3" title="home3">home3</a>
+</nav>
+<main>
+    <h1>Hello world</h1>
+    <section>
+        <h2>basic label</h2>
+        <article>
+            <h3>details and summary</h3>
+            <details>
+                <summary>The <mark>summary</mark> of the details</summary>
+                <div>this is details</div>
+            </details>
+        </article>
+        <article>
+            <h3>dialog</h3>
+            <p onclick="document.getElementById('dialog').showModal();">click to show the dialog</p>
+            <dialog id="dialog" onclick="document.getElementById('dialog').close();">this is a dialog</dialog>
+        </article>
+        <article>
+            <h3>figure</h3>
+            <figure>
+                <img src="https://www.w3schools.com/images/colorpicker.gif" alt="img"/>
+                <figcaption>this is the caption for the figure</figcaption>
+            </figure>
+        </article>
+        <article>
+            <h3>menu</h3>
+            <p contextmenu="menu1">right-click this words to test 'menu' and 'menuitem' (only ff)</p>
+            <menu type="context" id="menu1">
+                <menuitem label="reload" onclick="window.location.reload();"></menuitem>
+                <menu label="share">
+                    <menuitem label="href" onclick="alert(window.location.href);"></menuitem>
+                    <menuitem label="localStorage" onclick="alert(window.localStorage);"></menuitem>
+                </menu>
+            </menu>
+        </article>
+        <article>
+            <h3>meter, progess, bdi and ruby+rt+rp</h3>
+            <meter value="50" max="100"></meter>
+            <meter value="0.3"></meter>
+            <progress value="5" max="10"></progress><br>
+            <ul>
+                <li>User <bdi>hrefs</bdi>: 60 points</li>
+                <li>User <bdi>jdoe</bdi>: 80 points</li>
+                <li>User <bdi>إيان</bdi>: 90 points</li>
+            </ul>
+            <ruby>
+                漢 <rt><rp>(</rp> ㄏㄢˋ <rp>)</rp></rt>
+            </ruby>
+        </article>
+        <article>
+            <h3>time and wbr</h3>
+            <time>12:00</time>&nbsp;<time datetime="2018-05-15 14:00">time</time><br>
+            <p>trywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtry<wbr>wbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywb<wbr>rtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbrtrywbr</p>
+        </article>
+
+    </section>
+    <section>
+        <h2>form element</h2>
+        <article>
+            <h3>element</h3>
+            <form oninput="document.getElementById('avalue').innerHTML=parseInt(a.value);x.value=parseInt(a.value)+parseInt(b.value)+parseInt(c.value);">
+                <fieldset>
+                    <legend>this is the legend for this fieldset</legend>
+                    <input id="a" type="range" value="5" max="10"> (<span id="avalue"></span>) + <input id="b" type="text" placeholder="number"/> + <input id="c" type="number" min="0" max="10" step="2"/> = <output name="x" for="a b"></output>
+                </fieldset>
+                <input list="datalist1">
+                <datalist id="datalist1">
+                    <option value="abc"></option>
+                    <option value="def"></option>
+                    <option value="ghi"></option>
+                    <option value="jkl"></option>
+                </datalist>
+            </form>
+        </article>
+        <article>
+            <form autocomplete="on">
+                <h3>new input type</h3>
+                <input type="color" value="#ff0000"/>
+                <input type="date" min="1983-09-18" max="2018-05-15"/>
+                <input type="datetime-local"/>
+                <input type="email"/>
+                <input type="url" autocomplete="off"/>
+                <input type="submit"/>
+            </form>
+        </article>
+    </section>
+</main>
+<footer>
+    This is the footer
+</footer>
 </body>
 </html>
