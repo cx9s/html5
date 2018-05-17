@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>api</title>
+</head>
+<body>
+    <h1>api</h1>
+    <section>
+        <h2>geolocation</h2>
+        <div id="show"></div>
+    </section>
+    <section>
+        <h2>worker</h2>
+        <input type="button" value="on" onclick="onWorker();"/>
+        <input type="button" value="off" onclick="offWorker();">
+        <p id="countResult">0</p>
+    </section>
+    <section>
+        <h2>drag & drop</h2>
+        <img id="dImg" src="https://www.w3schools.com/images/colorpicker.gif" alt="img" width="80" height="68" draggable="true" ondragstart="drag(event)"/>
+        <div id="dArea" style="width: 90px; height: 70px; border: 1px solid #000;" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    </section>
+
+<script>
+    //geolocation & localStorage
+    var show = document.getElementById('show');
+
+    if (typeof(Storage) !== "undefined") {
+        getLocation();
+    } else {
+        show.innerHTML = "not supported for localStorage";
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            show.innerHTML = "not supported for geolocation";
+        }
+    }
+    function showPosition(position) {
+        localStorage.lati = position.coords.latitude;
+        localStorage.long = position.coords.longitude;
+        //alert(JSON.stringify(localStorage));
+        show.innerHTML = 'latitude: '+ localStorage.lati + '<br>latitude: ' + localStorage.long;
+    }
+
+    //worker
+    var result = document.getElementById("countResult");
+    var w;
+    function onWorker() {
+        if (typeof(Worker) !== "undefined") {
+            if (typeof(w) == "undefined") {
+                w = new Worker(workerapi.js);
+            }
+            w.onmessage = function (event){
+                result.innerHTML = event.data;
+            }
+        } else {
+            result.innerHTML = "not supported for worker";
+        }
+    }
+    function offWorker() {
+        w.terminate();
+        w = undefined;
+    }
+
+//drag & drop
+    function drag(e) {
+        e.dataTransfer.setData("id", e.target.id);
+    }
+    function allowDrop(e) {
+        e.preventDefault();
+    }
+    function drop(e) {
+        e.preventDefault();
+        var data = e.dataTransfer.getData("id");
+        e.target.appendChild(document.getElementById(data));
+    }
+</script>
+</body>
+</html>
